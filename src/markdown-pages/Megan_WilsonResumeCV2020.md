@@ -11,7 +11,9 @@ title: "Resume"
 
 -----------	 ---------
 LinkedIn: 	<https://linkedin.com/in/megan-wilson-20414b41> 
+
 Github:		<https://github.com/classic89> 
+
 Website: 	<http://www.meganlynnwilson.com>
 -----------	 ---------
 
