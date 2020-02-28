@@ -30,6 +30,7 @@ class HomeIndex extends React.Component {
 
                     <section id="two">
                         <h2>Recent Work</h2>
+                        <p>This is where I want the resume</p>
                         <ul className="actions">
                             <li><a href="#" className="button">Full Portfolio</a></li>
                         </ul>
@@ -37,7 +38,7 @@ class HomeIndex extends React.Component {
 
                     <section id="three">
                         <h2>Get In Touch</h2>
-                        <p>This is where I want the Resume</p>
+                        <p>What is here? Tacos</p>
                         <div className="row">
                             <div className="8u 12u$(small)">
                                 <form method="post" action="#">
