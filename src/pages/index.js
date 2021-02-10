@@ -1,98 +1,126 @@
-import React from 'react'
-import Helmet from 'react-helmet'
-import 
+import React, { useContext } from "react"
+import { graphql } from "gatsby"
+import ThemeContext from "../utils/theme"
+import { PageLayout } from "../components"
+import { SEO } from "../utils"
+import { Container, Image } from "react-bootstrap"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-import Layout from '../components/layout'
-
-class HomeIndex extends React.Component {
-
-    render() {
-        const siteTitle = "Megan Wilson"
-        const siteDescription = "My Resume"
-
-        return (
-            <Layout>
-                <Helmet>
-                        <title>{siteTitle}</title>
-                        <meta name="description" content={siteDescription} />
-                </Helmet>
-
-                <div id="main">
-
-                    <section id="one">
-                        <header className="major">
-                            <h2>A poet, a programmer, an acrobat, a skater, and a dog mom</h2>
-                        </header>
-                        <p>This is the paragraph</p>
-                        <ul className="actions">
-                            <li><a href="#" className="button">Learn More</a></li>
-                        </ul>
-                    </section>
-
-                    <section id="two">
-                        <h2>Recent Work</h2>
-                        <div class="row">
-							<ul class="col-6 col-12-xsmall work-item">
-								<a href="../images/01.jpg" class="image fit thumb"><img src="../images/01.jpg" alt="" /></a>
-								<h3>Magna sed consequat tempus</h3>
-								<p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
-							</ul>
-							<ul class="col-6 col-12-xsmall work-item">
-								<a href="../images/02.jpg" class="image fit thumb"><img src="../images/02.jpg" alt="" /></a>
-								<h3>Ultricies lacinia interdum</h3>
-								<p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
-							</ul>
-							<ul class="col-6 col-12-xsmall work-item">
-								<a href="../images/03.jpg" class="image fit thumb"><img src="../images/03.jpg" alt="" /></a>
-								<h3>Tortor metus commodo</h3>
-								<p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
-							</ul>
-						</div>
-                        <ul className="actions">
-                            <li><a href="/blog/my-first-post" className="button">Full Portfolio</a></li>
-                        </ul>
-                    </section>
-
-                    <section id="three">
-                        <h2>Get In Touch</h2>
-                        <div className="row">
-                            <div className="col-8 col-12-small">
-                                <form method="post" action="#">
-                                    <div className="row gtr-uniform gtr-50">
-                                        <div className="6u 12u$(xsmall)"><input type="text" name="name" id="name" placeholder="Name" /></div>
-                                        <div className="6u 12u$(xsmall)"><input type="email" name="email" id="email" placeholder="Email" /></div>
-                                        <div className="12u"><textarea name="message" id="message" placeholder="Message" rows="4"></textarea></div>
-                                    </div>
-                                </form>
-                                <ul className="actions">
-                                    <li><input type="submit" value="Send Message" /></li>
-                                </ul>
-                            </div>
-                            <div className="4u 12u$(small)">
-                                <ul className="labeled-icons">
-                                    <li>
-                                        <h3 className="icon solid fa-home"><span className="label">Address</span></h3>
-                                        Austin, TX 78747<br />
-                                        United States
-                                    </li>
-                                    <li>
-                                        <h3 className="icon solid fa-mobile"><span className="label">Phone</span></h3>
-                                        512-790-4754
-                                    </li>
-                                    <li>
-                                        <h3 className="icon solid fa-envelope"><span className="label">Email</span></h3>
-                                        <a href="#">megan@meganlynnwilson.com</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
-
-                </div>
-
-            </Layout>
-        )
-    }
+export default ({ data }) => {
+  const { unemployed, firstName, lastName, occupation } = data.site.siteMetadata
+  const { dark } = useContext(ThemeContext)
+  return (
+    <PageLayout>
+      <SEO title="Home" />
+      <Container className="text-center pt-5 mt-5" fluid>
+        <Image
+          width="150"
+          height="150"
+          fluid
+          src={dark ? `../../icons/darth-vader.png` : `../../icons/r2-d2.png`}
+          alt={dark ? "Darth Vader" : "R2-D2"}
+        />
+        {unemployed && (
+          <p className="mt-2">
+            <b> Hey! I am looking for new opportunities :)</b>
+          </p>
+        )}
+        <Container className="py-0 my-0">
+          <h1
+            style={{
+              fontSize: "5rem",
+              color: "black",
+            }}
+          >
+            <span className="first-name">{firstName}</span>&nbsp;
+            <span className="last-name">{lastName}</span>
+          </h1>
+          <p>
+            <i>
+              {occupation} by day,&nbsp;
+              {dark ? `Imperial enforcer by night` : `Rebel scum by night`}
+            </i>
+          </p>
+        </Container>
+        <hr className="my-3 w-25" />
+        <div className="d-md-inline-flex icons-container">
+          <a
+            href="https://www.github.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FontAwesomeIcon
+              icon={["fab", "github"]}
+              className="icons github"
+              title="Github"
+            />
+          </a>
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FontAwesomeIcon
+              icon={["fab", "linkedin"]}
+              className="icons linkedin"
+              title="LinkedIn"
+            />
+          </a>
+          <a
+            href="https://www.freecodecamp.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FontAwesomeIcon
+              icon={["fab", "free-code-camp"]}
+              className="icons fcc"
+              title="FreeCodeCamp"
+            />
+          </a>
+          <a
+            href="https://www.hackerrank.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FontAwesomeIcon
+              icon={["fab", "hackerrank"]}
+              className="icons hr"
+              title="Hackerrank"
+            />
+          </a>
+          <a
+            href="mailto:johndoe@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FontAwesomeIcon
+              icon={["fas", "envelope"]}
+              className="icons mail"
+              title="e-mail"
+            />
+          </a>
+          <a href="../../resume.pdf" target="_blank" download>
+            <FontAwesomeIcon
+              icon={["fas", "file-alt"]}
+              className="icons file"
+              title="Resume"
+            />
+          </a>
+        </div>
+      </Container>
+    </PageLayout>
+  )
 }
 
-export default HomeIndex
+export const query = graphql`
+  query {
+    site {
+      siteMetadata {
+        unemployed
+        firstName
+        lastName
+        occupation
+      }
+    }
+  }
+`
